@@ -20,7 +20,7 @@ jobs:
 
     # Get branch name to use for tag
     - name: Extract Branch Name
-      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
       
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
