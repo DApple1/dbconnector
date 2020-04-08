@@ -1,0 +1,25 @@
+{
+  "name": "dbconnector",
+  "version": "1.0.0",
+  "description": "CRUD operations for test data",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "fast-csv": "^4.1.3",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DApple1/dbconnector.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DApple1/dbconnector/issues"
+  },
+  "homepage": "https://github.com/DApple1/dbconnector#readme"
+}
