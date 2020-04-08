@@ -22,7 +22,7 @@ jobs:
     - name: Github tagger
       uses: mosfetlang/dev-tagger-action@v1
       with:
-        # The tag prefix
+        # The tag prefi
         tag-prefix: "release-v"
         # The remote server
         origin: "origin"
