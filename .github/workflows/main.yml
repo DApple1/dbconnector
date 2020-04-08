@@ -8,6 +8,8 @@ on:
   push:
     branches: [ test* ]
 
+env:
+  TAG_NAME: "2.1.0"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,9 +20,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-    # Get branch name to use for tag
-    - name: Extract Branch Name
-      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
+    # # Get branch name to use for tag
+    # - name: Extract Branch Name
+    #   run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
       
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
