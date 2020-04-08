@@ -20,9 +20,9 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
 
-    # # Get branch name to use for tag
-    # - name: Extract Branch Name
-    #   run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
+    # Get branch name to use for tag
+    - name: Extract Branch Name
+      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
       
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -30,7 +30,7 @@ jobs:
       
     - name: Delete tag if exists
       run: | 
-        git push origin :refs/tags/$TAG_NAME
+        git push origin :refs/tags/3.0.0
 
     - name: Create tag
       run: |
