@@ -24,17 +24,15 @@ jobs:
     - name: 'Deploy ${{ github.event.deployment.environment }}'
       if: ${{ github.event.deployment.environment }} == 'development'
       run: |
-        echo "This is the - ${{ github.event.deployment.environment }} - environment"
-
-    - name: 'Deploy ${{ github.event.deployment.environment }}'
-      if: ${{ github.event.deployment.environment }} == 'qa'
-      run: |
-        echo "This is the - ${{ github.event.deployment.environment }} - environment"
-
-    - name: 'Deploy ${{ github.event.deployment.environment }}'
-      if: ${{ github.event.deployment.environment }} == 'production'
-      run: |
-        echo "This is the - ${{ github.event.deployment.environment }} - environment"
+        if ${{ github.event.deployment.environment }} == 'development'
+        then
+          echo "This is the - ${{ github.event.deployment.environment }} - environment"
+        elif ${{ github.event.deployment.environment }} == 'qa'
+        then
+          echo "This is the - ${{ github.event.deployment.environment }} - environment"
+        else
+          echo "This is the - ${{ github.event.deployment.environment }} - environment"
+        fi
 
     - name: deployment success
       if: success()
