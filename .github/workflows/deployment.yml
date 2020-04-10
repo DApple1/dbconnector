@@ -4,17 +4,17 @@ on: ['deployment']
 jobs:
   deployment:
 
-    runs-on: 'ubuntu-latest'
+    runs-on: ubuntu-latest
 
     steps:
-    - name: 'Checkout'
-      uses: 'actions/checkout@v1'
+    - name: Checkout
+      uses: actions/checkout@v1
 
-    - name: 'Deployment pending'
-      uses: 'deliverybot/status@master'
+    - name: Deployment pending
+      uses: deliverybot/status@master
       with:
-        state: 'pending'
-        token: '${{ secrets.GITHUB_TOKEN }}'
+        state: pending
+        token: ${{ secrets.GITHUB_TOKEN }}
 
 # do your deployment here, using whatever tooling you like:
 
@@ -22,22 +22,30 @@ jobs:
       run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
     - name: 'Deploy ${{ github.event.deployment.environment }}'
+      if: ${{ github.event.deployment.environment }} == 'development'
       run: |
-        echo "task - ${{ github.event.deployment.task }}"
-        echo "environment - ${{ github.event.deployment.environment }}"
-        echo "payload - ${{ toJson(github.event.deployment.payload) }}"
-        echo "$TAG_NAME"
+        echo "This is the- ${{ github.event.deployment.environment }} - environment"
 
-    - name: 'deployment success'
+    - name: 'Deploy ${{ github.event.deployment.environment }}'
+      if: ${{ github.event.deployment.environment }} == 'qa'
+      run: |
+        echo "This is the- ${{ github.event.deployment.environment }} - environment"
+
+    - name: 'Deploy ${{ github.event.deployment.environment }}'
+      if: ${{ github.event.deployment.environment }} == 'production'
+      run: |
+        echo "This is the- ${{ github.event.deployment.environment }} - environment"
+
+    - name: deployment success
       if: success()
-      uses: 'deliverybot/status@master'
+      uses: deliverybot/status@master
       with:
-        state: 'success'
-        token: '${{ secrets.GITHUB_TOKEN }}'
+        state: success
+        token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: 'deployment failure'
+    - name: deployment failure
       if: failure()
-      uses: 'deliverybot/status@master'
+      uses: deliverybot/status@master
       with:
-        state: 'failure'
-        token: '${{ secrets.GITHUB_TOKEN }}'
+        state: failure
+        token: ${{ secrets.GITHUB_TOKEN }}
