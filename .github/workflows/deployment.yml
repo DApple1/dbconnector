@@ -8,7 +8,7 @@ jobs:
 
     steps:
     - name: 'Checkout'
-      uses: 'actions/checkout@v2'
+      uses: 'actions/checkout@v1'
 
     - name: 'Deployment pending'
       uses: 'deliverybot/status@master'
@@ -18,11 +18,15 @@ jobs:
 
 # do your deployment here, using whatever tooling you like:
 
+    - name: Extract Branch Name
+      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+
     - name: 'Deploy ${{ github.event.deployment.environment }}'
       run: |
         echo "task - ${{ github.event.deployment.task }}"
         echo "environment - ${{ github.event.deployment.environment }}"
         echo "payload - ${{ toJson(github.event.deployment.payload) }}"
+        echo ""
 
     - name: 'deployment success'
       if: success()
