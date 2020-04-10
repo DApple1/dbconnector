@@ -19,7 +19,7 @@ jobs:
 # do your deployment here, using whatever tooling you like:
 
     - name: Extract Branch Name
-      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
     - name: 'Deploy ${{ github.event.deployment.environment }}'
       run: |
