@@ -29,8 +29,11 @@ jobs:
         elif ${{ github.event.deployment.environment }} == 'qa'
         then
           echo "This is the - ${{ github.event.deployment.environment }} - environment"
-        else
+        elif ${{ github.event.deployment.environment }} == 'production'
+        then
           echo "This is the - ${{ github.event.deployment.environment }} - environment"
+        else
+          echo "Do not use the - ${{ github.event.deployment.environment }} - environment"
         fi
 
     - name: deployment success
