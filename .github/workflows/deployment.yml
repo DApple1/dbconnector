@@ -22,7 +22,6 @@ jobs:
       run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
     - name: 'Deploy ${{ github.event.deployment.environment }}'
-      if: ${{ github.event.deployment.environment }} == 'development'
       run: |
         if ${{ github.event.deployment.environment }} == 'development'
         then
