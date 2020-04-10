@@ -23,15 +23,23 @@ jobs:
 
     - name: 'Deploy ${{ github.event.deployment.environment }}'
       run: |
+
+        # Trigger deploy to dev
         if ${{ github.event.deployment.environment }} == 'development'
         then
           echo "This is the - ${{ github.event.deployment.environment }} - environment"
+
+        # Trigger deploy to qa
         elif ${{ github.event.deployment.environment }} == 'qa'
         then
           echo "This is the - ${{ github.event.deployment.environment }} - environment"
+
+        # Trigger deploy to prod
         elif ${{ github.event.deployment.environment }} == 'production'
         then
           echo "This is the - ${{ github.event.deployment.environment }} - environment"
+
+        # Unknown environment
         else
           echo "Do not use the - ${{ github.event.deployment.environment }} - environment"
         fi
