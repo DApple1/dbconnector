@@ -1,13 +1,13 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: tag creation
 
 # Control when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
-
-    branches: [ masterx ]
+    tags:
+    - '*'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -26,10 +26,9 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
       
-    - name: Create tag
-      run: | 
-        git push origin :refs/tags/$TAG_NAME
-        git tag $TAG_NAME
-        git push origin $TAG_NAME
+    # - name: Create tag
+    #   run: | 
+    #     git tag $TAG_NAME
+    #     git push origin $TAG_NAME
 
 
