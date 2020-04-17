@@ -25,9 +25,10 @@ jobs:
       run: |
 
         # Trigger deploy to dev
-        if ${{ github.event.deployment.environment }} == 'development'
+        if ${{ github.event.deployment.environment }} == 'dev'
         then
           echo "This is the - ${{ github.event.deployment.environment }} - environment"
+          echo "Payload is - ${{ github.event.deployment.payload }}"
 
         # Trigger deploy to qa
         elif ${{ github.event.deployment.environment }} == 'qa'
