@@ -13,3 +13,4 @@ dev:
   required_contexts: ["ci"]
   environment: dev
   production_environment: false
+  payload: {ref: dev1}
