@@ -9,7 +9,7 @@ staging:
 
 dev:
 #   auto_deploy_on: refs/heads/master
-  environment: staging
+  environment: dev
   production_environment: false
 
 review:
