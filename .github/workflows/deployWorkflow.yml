@@ -1,52 +1,52 @@
 name: Deploy to environment
-on: ['deployment']
+on: ["deployment"]
 
 jobs:
   deployment:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
 
-    - name: Deployment pending
-      uses: deliverybot/status@master
-      with:
-        state: pending
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deployment pending
+        uses: deliverybot/status@master
+        with:
+          state: pending
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-# do your deployment here, using whatever tooling you like:
+      # do your deployment here, using whatever tooling you like:
 
-    - name: Extract Branch Name
-      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
+      - name: Extract Branch Name
+        run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
-    - name: 'Deploy ${{ github.event.deployment.environment }}'
-      run: |
-        if ${{ github.event.deployment.environment }} == 'dev'
-        then
-          echo "This is the - ${{ github.event.deployment.environment }} - environment"
-          echo "Payload is - ${{ github.event.deployment.payload }}"
-        elif ${{ github.event.deployment.environment }} == 'qa'
-        then
-          echo "This is the - ${{ github.event.deployment.environment }} - environment"
-        elif ${{ github.event.deployment.environment }} == 'production'
-        then
-          echo "This is the - ${{ github.event.deployment.environment }} - environment"
-        else
-          echo "The environment - ${{ github.event.deployment.environment }} - is not known"
-        fi
+      - name: "Deploy ${{ github.event.deployment.environment }}"
+        shell: bash
+        run: |
+          if [ ${{ github.event.deployment.environment }} == 'dev' ]
+          then
+            echo "This is the - ${{ github.event.deployment.environment }} - environment"
+            echo "Payload is - ${{ github.event.deployment.payload }}"
+          elif [ ${{ github.event.deployment.environment }} == 'qa' ]
+          then
+            echo "This is the - ${{ github.event.deployment.environment }} - environment"
+          elif [ ${{ github.event.deployment.environment }} == 'production' ]
+          then
+            echo "This is the - ${{ github.event.deployment.environment }} - environment"
+          else
+            echo "The environment - ${{ github.event.deployment.environment }} - is not known"
+          fi
 
-    - name: deployment success
-      if: success()
-      uses: deliverybot/status@master
-      with:
-        state: success
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: deployment success
+        if: success()
+        uses: deliverybot/status@master
+        with:
+          state: success
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: deployment failure
-      if: failure()
-      uses: deliverybot/status@master
-      with:
-        state: failure
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: deployment failure
+        if: failure()
+        uses: deliverybot/status@master
+        with:
+          state: failure
+          token: ${{ secrets.GITHUB_TOKEN }}
