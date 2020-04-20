@@ -14,7 +14,7 @@ env:
   EVENT_NAME: ${{github.event_name}}
   SHA: ${{github.sha}}
   REF: ${{github.ref}}
-  WORKFLOW_REF: ${{ref}}
+  WORKFLOW_REF: ${{github.event.deployment.ref}}
   HEAD_REF: ${{github.head_ref}}
   BASE_REF: ${{github.base_ref}}
   TOKEN: ${{github.token}}
