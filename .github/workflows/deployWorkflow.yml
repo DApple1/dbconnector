@@ -3,24 +3,22 @@ on: ["deployment"]
 
 # LIST OF ENV VARIABLES
 env:
-  GITHUB: ${{github}}
-
-  eventpath: ${{github.event_path	}}
-  workflow: ${{ github.workflow}}
-  job: ${{ github.job }}
-  run_id: ${{ github.run_id }}
-  run_number:  ${{ github.run_number }}
-  actor: ${{ github.actor }}
-  repo: ${{github.repository}}
-  repo_owner: ${{github.repository_owner}}
-  event_name: ${{github.event_name}}
-  sha: ${{github.sha}}
-  ref: ${{github.ref}}
-  head_ref: ${{github.head_ref}}
-  base_ref: ${{github.base_ref}}
-  token: ${{github.token}}
-  workspace: ${{github.workspace}}
-  action: ${{github.action}}
+  EVENTPATH: ${{github.event_path	}}
+  WORKFLOW: ${{ github.workflow}}
+  JOB: ${{ github.job }}
+  RUN_ID: ${{ github.run_id }}
+  RUN_NUM:  ${{ github.run_number }}
+  ACTOR: ${{ github.actor }}
+  REPO: ${{github.repository}}
+  OWNER: ${{github.repository_owner}}
+  EVENT_NAME: ${{github.event_name}}
+  SHA: ${{github.sha}}
+  REF: ${{github.ref}}
+  HEAD_REF: ${{github.head_ref}}
+  BASE_REF: ${{github.base_ref}}
+  TOKEN: ${{github.token}}
+  WORKSPACE: ${{github.workspace}}
+  ACTION: ${{github.action}}
 
 
 jobs:
