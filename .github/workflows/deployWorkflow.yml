@@ -1,6 +1,9 @@
 name: Deploy to environment
 on: ["deployment"]
 
+env:
+  BRANCH_NAME: ${{github.ref}}
+
 jobs:
   deployment:
     runs-on: ubuntu-latest
