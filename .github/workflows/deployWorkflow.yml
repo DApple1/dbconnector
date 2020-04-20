@@ -1,8 +1,27 @@
 name: Deploy to environment
 on: ["deployment"]
 
+# LIST OF ENV VARIABLES
 env:
-  BRANCH_NAME: ${{github.sha}}
+  GITHUB: ${{github}}
+
+  eventpath: ${{github.event_path	}}
+  workflow: ${{ github.workflow}}
+  job: ${{ github.job }}
+  run_id: ${{ github.run_id }}
+  run_number:  ${{ github.run_number }}
+  actor: ${{ github.actor }}
+  repo: ${{github.repository}}
+  repo_owner: ${{github.repository_owner}}
+  event_name: ${{github.event_name}}
+  sha: ${{github.sha}}
+  ref: ${{github.ref}}
+  head_ref: ${{github.head_ref}}
+  base_ref: ${{github.base_ref}}
+  token: ${{github.token}}
+  workspace: ${{github.workspace}}
+  action: ${{github.action}}
+
 
 jobs:
   deployment:
@@ -29,7 +48,6 @@ jobs:
           if [ ${{ github.event.deployment.environment }} == 'dev' ]
           then
             echo "This is the - ${{ github.event.deployment.environment }} - environment"
-            echo "Payload is - ${{ github.event.deployment.payload }}"
           elif [ ${{ github.event.deployment.environment }} == 'qa' ]
           then
             echo "This is the - ${{ github.event.deployment.environment }} - environment"
