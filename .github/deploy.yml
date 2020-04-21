@@ -10,7 +10,7 @@ qa:
 
 dev:
   auto_deploy_on: refs/heads/dev
-  required_contexts: ["ci"]
+  required_contexts: ["test"]
   environment: dev
   production_environment: false
   ref: ${{ ref }}
