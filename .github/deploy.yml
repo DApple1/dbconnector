@@ -2,10 +2,10 @@ production:
   environment: production
   production_environment: true
 
-staging:
+qa:
   auto_deploy_on: refs/heads/release_*
   required_contexts: ["ci"]
-  environment: staging
+  environment: qa
   production_environment: false
 
 dev:
