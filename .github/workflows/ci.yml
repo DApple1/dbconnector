@@ -12,6 +12,8 @@ jobs:
       - name: Extract Branch Name
         run: |
           echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+          
+      # Tag
       - name: Github Tag
         uses: mathieudutour/github-tag-action@v4.5
         with:
@@ -19,4 +21,16 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           # Comma separated list of branches (bash reg exp accepted) that will generate the release tags. Other branches and pull-requests generate versions postfixed with the commit hash and do not generate any tag. Examples: `master` or `.*` or `release.*,hotfix.*,master`...
           release_branches: dev
-
+      - name: Create a Release
+        uses: actions/create-release@v1.1.1
+        with:
+          # The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag
+          tag_name: $TAG_NAME
+          # The name of the release. For example, `Release v1.0.1`
+          release_name: "Release v1.0.1"
+          # Text describing the contents of the tag.
+          body: "TEST RELEASE"
+          # `true` to create a draft (unpublished) release, `false` to create a published one. Default: `false`
+          draft: true
+          # Any branch or commit SHA the Git tag is created from, unused if the Git tag already exists. Default: SHA of current commit
+          commitish: ${{ github.sha }}
