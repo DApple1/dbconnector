@@ -18,6 +18,5 @@ jobs:
           # Required for permission to tag the repo.
           github_token: ${{secrets.GITHUB_TOKEN}}
           # Comma separated list of branches (bash reg exp accepted) that will generate the release tags. Other branches and pull-requests generate versions postfixed with the commit hash and do not generate any tag. Examples: `master` or `.*` or `release.*,hotfix.*,master`...
-          release_branches: dev, master
-          # Do not perform taging, just calculate next version and changelog, then exit
-          dry_run: true
+          release_branches: dev
+
