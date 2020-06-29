@@ -22,8 +22,13 @@ jobs:
           # Comma separated list of branches (bash reg exp accepted) that will generate the release tags. Other branches and pull-requests generate versions postfixed with the commit hash and do not generate any tag. Examples: `master` or `.*` or `release.*,hotfix.*,master`...
           release_branches: dev
           default_bump : false
-      - name: Create a Release
-        uses: actions/create-release@v1.1.1
+          
+      # Release
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           # The name of the tag. This should come from the webhook payload, `github.GITHUB_REF` when a user pushes a new tag
           tag_name: $TAG_NAME
