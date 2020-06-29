@@ -2,10 +2,7 @@ name: TEST 2
 on:
   push:
     branches:
-    - dev
-
-env:
-  RELEASE_VERSION: v2.0.0
+    - master
 
 jobs:
   test:
@@ -22,6 +19,4 @@ jobs:
         with:
           # Required for permission to tag the repo.
           github_token: ${{secrets.GITHUB_TOKEN}}
-          # Comma separated list of branches (bash reg exp accepted) that will generate the release tags. Other branches and pull-requests generate versions postfixed with the commit hash and do not generate any tag. Examples: `master` or `.*` or `release.*,hotfix.*,master`...
-          release_branches: dev
 
