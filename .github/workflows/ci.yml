@@ -1,11 +1,22 @@
-name: CI
-on: [push]
+name: TEST 2
+on:
+  push:
+    branches:
+    - master
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: install, build, and test
-      run: |
-        echo 'ok'
+      # Get branch name to use for tag
+      - name: Extract Branch Name
+        run: |
+          echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+          
+      # Tag
+      - name: Github Tag
+        uses: mathieudutour/github-tag-action@v4.5
+        with:
+          # Required for permission to tag the repo.
+          github_token: ${{secrets.GITHUB_TOKEN}}
+

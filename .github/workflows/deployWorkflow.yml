@@ -1,59 +1,72 @@
-name: Deploy to environment
-on: ['deployment']
+name: Deploy to environment - test
+on: ["deployment"]
+
+# LIST OF ENV VARIABLES
+env:
+  EVENTPATH: ${{github.event_path	}}
+  WORKFLOW: ${{ github.workflow}}
+  JOB: ${{ github.job }}
+  RUN_ID: ${{ github.run_id }}
+  RUN_NUM:  ${{ github.run_number }}
+  ACTOR: ${{ github.actor }}
+  REPO: ${{github.repository}}
+  OWNER: ${{github.repository_owner}}
+  EVENT_NAME: ${{github.event_name}}
+  SHA: ${{github.sha}}
+  REF: ${{github.ref}}
+  WORKFLOW_REF: ${{github.event.deployment.ref}}
+  HEAD_REF: ${{github.head_ref}}
+  BASE_REF: ${{github.base_ref}}
+  TOKEN: ${{github.token}}
+  WORKSPACE: ${{github.workspace}}
+  ACTION: ${{github.action}}
+
 
 jobs:
   deployment:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
 
-    - name: Deployment pending
-      uses: deliverybot/status@master
-      with:
-        state: pending
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deployment pending
+        uses: deliverybot/status@master
+        with:
+          state: pending
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-# do your deployment here, using whatever tooling you like:
+      # do your deployment here, using whatever tooling you like:
 
-    - name: Extract Branch Name
-      run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
+      - name: Extract Branch Name
+        run: echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*_})"
 
-    - name: 'Deploy ${{ github.event.deployment.environment }}'
-      run: |
+      - name: "Deploy ${{ github.event.deployment.environment }}"
+        shell: bash
+        run: |
+          if [ ${{ github.event.deployment.environment }} == 'dev' ]
+          then
+            echo "This is the - ${{ github.event.deployment.environment }} - environment"
+          elif [ ${{ github.event.deployment.environment }} == 'qa' ]
+          then
+            echo "This is the - ${{ github.event.deployment.environment }} - environment"
+          elif [ ${{ github.event.deployment.environment }} == 'production' ]
+          then
+            echo "This is the - ${{ github.event.deployment.environment }} - environment"
+          else
+            echo "The environment - ${{ github.event.deployment.environment }} - is not known"
+          fi
 
-        # Trigger deploy to dev
-        if ${{ github.event.deployment.environment }} == 'development'
-        then
-          echo "This is the - ${{ github.event.deployment.environment }} - environment"
+      - name: deployment success
+        if: success()
+        uses: deliverybot/status@master
+        with:
+          state: success
+          token: ${{ secrets.GITHUB_TOKEN }}
 
-        # Trigger deploy to qa
-        elif ${{ github.event.deployment.environment }} == 'qa'
-        then
-          echo "This is the - ${{ github.event.deployment.environment }} - environment"
-
-        # Trigger deploy to prod
-        elif ${{ github.event.deployment.environment }} == 'production'
-        then
-          echo "This is the - ${{ github.event.deployment.environment }} - environment"
-
-        # Unknown environment
-        else
-          echo "Do not use the - ${{ github.event.deployment.environment }} - environment"
-        fi
-
-    - name: deployment success
-      if: success()
-      uses: deliverybot/status@master
-      with:
-        state: success
-        token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: deployment failure
-      if: failure()
-      uses: deliverybot/status@master
-      with:
-        state: failure
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - name: deployment failure
+        if: failure()
+        uses: deliverybot/status@master
+        with:
+          state: failure
+          token: ${{ secrets.GITHUB_TOKEN }}
