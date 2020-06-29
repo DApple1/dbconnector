@@ -21,6 +21,7 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           # Comma separated list of branches (bash reg exp accepted) that will generate the release tags. Other branches and pull-requests generate versions postfixed with the commit hash and do not generate any tag. Examples: `master` or `.*` or `release.*,hotfix.*,master`...
           release_branches: dev
+          default_bump : false
       - name: Create a Release
         uses: actions/create-release@v1.1.1
         with:
