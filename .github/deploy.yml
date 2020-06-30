@@ -1,4 +1,5 @@
 production:
+  auto_deploy_on: refs/tags/v*
   environment: production
   production_environment: true
 
