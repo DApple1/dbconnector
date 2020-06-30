@@ -27,6 +27,7 @@ env:
   TOKEN: ${{github.token}}
   WORKSPACE: ${{github.workspace}}
   ACTION: ${{github.action}}
+  PRERELEASE: ${{on.release.types}}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -63,4 +64,5 @@ jobs:
         echo $TOKEN
         echo $WORKSPACE
         echo $ACTION
-        echo env.TAG_NAME
+        echo $TAG_NAME
+        echo $PRERELEASE
