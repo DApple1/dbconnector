@@ -2,6 +2,7 @@ production:
   auto_deploy_on: refs/tags/v5*
   environment: production
   production_environment: true
+  required_contexts: ["deliverybot/promotion"]
 
 qa:
   auto_deploy_on: refs/heads/v2*
