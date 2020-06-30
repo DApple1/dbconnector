@@ -1,8 +1,5 @@
 name: TEST 2
-on:
-  push:
-    branches:
-    - master
+on: ["deployment"]
 
 jobs:
   test:
@@ -13,10 +10,5 @@ jobs:
         run: |
           echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
           
-      # Tag
-      - name: Github Tag
-        uses: mathieudutour/github-tag-action@v4.5
-        with:
-          # Required for permission to tag the repo.
-          github_token: ${{secrets.GITHUB_TOKEN}}
+
 
