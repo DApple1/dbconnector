@@ -1,16 +1,15 @@
 production:
+  auto_deploy_on: refs/tags/v5*
   environment: production
   production_environment: true
-  auto_deploy_on: refs/tags/v*
-  required_contexts: ["deliverybot/promotion"]
 
 qa:
-  auto_deploy_on: refs/heads/release_*
+  auto_deploy_on: refs/heads/v2*
   environment: qa
   production_environment: false
 
 dev:
-  auto_deploy_on: refs/tags/v*
+  auto_deploy_on: refs/tags/v1*
   environment: dev
   production_environment: false
   ref: ${{ ref }}
