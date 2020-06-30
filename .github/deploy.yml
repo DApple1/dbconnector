@@ -10,7 +10,7 @@ qa:
   production_environment: false
 
 dev:
-  auto_deploy_on: refs/heads/dev
+  auto_deploy_on: refs/tags/v*
   environment: dev
   production_environment: false
   ref: ${{ ref }}
