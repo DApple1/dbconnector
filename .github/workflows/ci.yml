@@ -1,5 +1,8 @@
 name: TEST 2
-on: ["deployment"]
+on:
+  push:
+    branches:
+    - dev
 
 jobs:
   test:
