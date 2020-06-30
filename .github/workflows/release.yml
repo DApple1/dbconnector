@@ -6,7 +6,7 @@ name: Deploy on Release
 # events but only for the master branch
 on:
   release:
-    branches: [ published ]
+    types: [ published ]
     
 # LIST OF ENV VARIABLES
 env:
@@ -47,5 +47,20 @@ jobs:
     # Runs a set of commands using the runners shell
     - name: Run a multi-line script
       run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        echo $EVENTPATH
+        echo $WORKFLOW
+        echo $JOB
+        echo $RUN_ID
+        echo $RUN_NUM
+        echo $ACTOR
+        echo $REPO
+        echo $OWNER
+        echo $EVENT_NAME
+        echo $SHA
+        echo $REF
+        echo $WORKFLOW_REF
+        echo $HEAD_REF
+        echo $BASE_REF
+        echo $TOKEN
+        echo $WORKSPACE
+        echo $ACTION
