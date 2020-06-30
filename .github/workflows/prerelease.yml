@@ -28,6 +28,7 @@ env:
   WORKSPACE: ${{github.workspace}}
   ACTION: ${{github.action}}
   PRERELEASE: ${{github.event_type}}
+  EVENT: ${{github.event}}
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -65,4 +66,4 @@ jobs:
         echo $WORKSPACE
         echo $ACTION
         echo $TAG_NAME
-        echo $PRERELEASE
+        echo $EVENT
