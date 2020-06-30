@@ -5,13 +5,11 @@ production:
 
 qa:
   auto_deploy_on: refs/heads/release_*
-  required_contexts: ["ci"]
   environment: qa
   production_environment: false
 
 dev:
   auto_deploy_on: refs/heads/dev
-  required_contexts: ["test5"]
   environment: dev
   production_environment: false
   ref: ${{ ref }}
