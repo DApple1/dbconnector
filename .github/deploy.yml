@@ -13,4 +13,3 @@ dev:
   auto_deploy_on: refs/tags/v1*
   environment: dev
   production_environment: false
-  ref: ${{ ref }}
