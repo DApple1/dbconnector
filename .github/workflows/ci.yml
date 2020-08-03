@@ -9,10 +9,11 @@ on:
 
 env:
   PROVISIONER_APP_ID: fff-provisioner-apps
+  ENVIRONMENT: dev
 
 jobs:
   test:
-    if: contains(github.ref, 'feature') && github.event.inputs.deployTo == 'dev'
+    if: contains(github.ref, 'master') && github.event.inputs.deployTo == ENVIRONMENT
 
     runs-on: ubuntu-latest
     steps:
