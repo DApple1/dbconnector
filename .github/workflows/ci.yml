@@ -13,7 +13,7 @@ env:
 
 jobs:
   test:
-    if: contains(github.ref, 'master') && github.event.inputs.deployTo == ${{ ENVIRONMENT }}
+    if: contains(github.ref, 'master')
 
     runs-on: ubuntu-latest
     steps:
@@ -30,10 +30,10 @@ jobs:
       # Get branch name to use for tag
       - name: Extract Branch Name2
         run: |
-          echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+          echo "github.sha"
 
       # Get branch name to use for tag
       - name: Extract Branch Name3
         run: |
-          echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+          echo "${{github.sha}}"
 
