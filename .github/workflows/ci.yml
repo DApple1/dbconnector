@@ -19,7 +19,7 @@ jobs:
         run: |
           echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
                 
-      - if: contains(env.TAG_NAME, 'feature') && ${{ github.event.inputs.deployTo }} === 'dev'
+      - if: contains(env.TAG_NAME, 'feature') && github.event.inputs.deployTo === 'dev'
         run: |
           echo "Environment: ${{ github.event.inputs.deployTo }}"
           echo "Tag: $TAG_NAME"
