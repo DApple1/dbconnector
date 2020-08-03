@@ -13,8 +13,8 @@ jobs:
         run: |
           echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
           
-      - if: contains(env.PROVISIONER_APP_ID, 'fff')
-        run: echo '$TAG_NAME'
+      - if: contains(env.TAG_NAME, 'master')
+        run: echo 'TAG_NAME'
 
 
 
