@@ -1,5 +1,8 @@
 name: TEST 2
 on: 
+  push:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       deployTo: 
@@ -13,7 +16,7 @@ env:
 
 jobs:
   test:
-    if: contains(github.ref, 'master')
+    if: contains(github.ref, 'master') || contains(github.event.inputs.deployTo, 'dev')
 
     runs-on: ubuntu-latest
     steps:
@@ -28,12 +31,7 @@ jobs:
           echo "Tag: $TAG_NAME"
 
       # Get branch name to use for tag
-      - name: Extract Branch Name2
-        run: |
-          echo "github.sha"
-
-      # Get branch name to use for tag
-      - name: Extract Branch Name3
+      - name: SHA
         run: |
           echo "${{github.sha}}"
 
