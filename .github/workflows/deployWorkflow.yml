@@ -1,5 +1,5 @@
 name: Deploy to environment - test
-on: ["deployment"]
+on: workflow_dispatch
 
 # LIST OF ENV VARIABLES
 env:
