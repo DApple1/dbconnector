@@ -4,9 +4,9 @@ name: Deploy on Prerelease
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
-on:
-  release:
-    types: [ prereleased ]
+on: workflow_dispatch
+  # release:
+  #   types: [ prereleased ]
     
 # LIST OF ENV VARIABLES
 env:

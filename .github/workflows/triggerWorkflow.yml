@@ -12,7 +12,23 @@ on:
         default: patch
 
 env:
-  ENVIRONMENT: dev
+  EVENTPATH: ${{github.event_path	}}
+  WORKFLOW: ${{ github.workflow}}
+  JOB: ${{ github.job }}
+  RUN_ID: ${{ github.run_id }}
+  RUN_NUM:  ${{ github.run_number }}
+  ACTOR: ${{ github.actor }}
+  REPO: ${{github.repository}}
+  OWNER: ${{github.repository_owner}}
+  EVENT_NAME: ${{github.event_name}}
+  SHA: ${{github.sha}}
+  REF: ${{github.ref}}
+  WORKFLOW_REF: ${{github.event.deployment.ref}}
+  HEAD_REF: ${{github.head_ref}}
+  BASE_REF: ${{github.base_ref}}
+  TOKEN: ${{github.token}}
+  WORKSPACE: ${{github.workspace}}
+  ACTION: ${{github.action}}
 
 jobs:
   workflowTrigger:
