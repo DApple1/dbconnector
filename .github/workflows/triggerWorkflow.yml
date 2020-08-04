@@ -64,7 +64,7 @@ jobs:
       - name: Get the version
         id: get_version
         run: |
-          echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+          echo ::set-env name=VERSION::${GITHUB_REF#refs/tags/}
 
       - name: Display the version
         id: show_version
