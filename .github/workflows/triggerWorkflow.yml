@@ -65,6 +65,10 @@ jobs:
         id: get_version
         run: |
           echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+      - name: Display the version
+        id: show_version
+        run: |
           echo "Latest tag version: $VERSION"
 
       # - name: Create Release
