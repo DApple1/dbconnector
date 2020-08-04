@@ -61,12 +61,11 @@ jobs:
           DEFAULT_BUMP: ${{ github.event.inputs.bump }}
           WITH_V: true
 
-      - name: tag
+      - name: Get the version
+        id: get_version
         run: |
-          echo "$new_tag"
-          echo "new_tag"
-          echo "$tag"
-          echo "tag"
+          echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+          echo "Latest tag version: $VERSION"
 
       # - name: Create Release
       #   id: create_release
