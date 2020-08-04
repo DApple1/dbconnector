@@ -61,18 +61,25 @@ jobs:
           DEFAULT_BUMP: ${{ github.event.inputs.bump }}
           WITH_V: true
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: new_tag
-          release_name: Release $new_tag
-          body: |
-            Changes in this Release
-            - First Change
-            - Second Change
-          draft: false
-          prerelease: false
+      - name: tag
+        run: |
+          echo "$new_tag"
+          echo "new_tag"
+          echo "$tag"
+          echo "tag"
+
+      # - name: Create Release
+      #   id: create_release
+      #   uses: actions/create-release@v1
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     tag_name: tag
+      #     release_name: Release tag
+      #     body: |
+      #       Changes in this Release
+      #       - First Change
+      #       - Second Change
+      #     draft: false
+      #     prerelease: false
 
