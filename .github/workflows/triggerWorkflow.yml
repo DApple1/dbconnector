@@ -61,6 +61,12 @@ jobs:
           DEFAULT_BUMP: ${{ github.event.inputs.bump }}
           WITH_V: true
 
+      - name: 'Get tag'
+        id: previoustag
+        uses: "WyriHaximus/github-action-get-previous-tag@master"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
       - name: Get the version
         id: get_version
         run: |
