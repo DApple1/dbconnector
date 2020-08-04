@@ -68,7 +68,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: new_tag
-          release_name: Release new_tag
+          release_name: Release $new_tag
           body: |
             Changes in this Release
             - First Change
