@@ -1,0 +1,33 @@
+name: TRIGGER WORKFLOW
+on: 
+  workflow_dispatch:
+    inputs:
+      deployTo: 
+        description: 'Environment to deploy to'
+        required: true
+        default: dev
+
+env:
+  ENVIRONMENT: dev
+
+jobs:
+  workflowTrigger:
+    if: contains(github.ref, 'master') || contains(github.event.inputs.deployTo, 'dev')
+
+    runs-on: ubuntu-latest
+    steps:
+      # Get branch name to use for tag
+      - name: Extract Branch Name
+        run: |
+          echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+            
+      - name: Echo values
+        run: |
+          echo "Environment: ${{ github.event.inputs.deployTo }}"
+          echo "Tag: $TAG_NAME"
+
+      # Get branch name to use for tag
+      - name: SHA
+        run: |
+          echo "${{github.sha}}"
+
