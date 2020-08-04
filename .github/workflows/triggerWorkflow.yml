@@ -63,7 +63,7 @@ jobs:
 
       - name: New tag name
         run: |
-          echo "$new_tag"
+          echo "new_tag"
 
       # - name: Create Release
       #   id: create_release
