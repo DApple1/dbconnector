@@ -1,8 +1,5 @@
 name: TEST 2
 on: 
-  push:
-    branches:
-      - master
   workflow_dispatch:
     inputs:
       deployTo: 
