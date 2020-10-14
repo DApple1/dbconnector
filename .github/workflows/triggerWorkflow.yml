@@ -67,15 +67,20 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: Get the version
-        id: get_version
-        run: |
-          echo ::set-env name=VERSION::${GITHUB_REF#refs/tags/}
+      # - name: Get the version
+      #   id: get_version
+      #   run: |
+      #     echo ::set-env name=VERSION::${GITHUB_REF#refs/tags/}
 
       - name: Display the version
         id: show_version
         run: |
-          echo "Latest tag version: $VERSION"
+          echo "Latest tag version: ${{steps.prev}}"
+
+      # Get branch name to use for tag
+      - name: Extract Branch Name
+        run: |
+          echo "BRANCH_NAME=$(echo ${GITHUB_REF##*/})"
 
       # - name: Create Release
       #   id: create_release
