@@ -81,6 +81,7 @@ jobs:
 
       # Use env var
       - name: Set env vars
+        run: echo $TEST
         env: 
           TEST: 'TEST3'
 
