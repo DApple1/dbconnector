@@ -29,6 +29,7 @@ env:
   TOKEN: ${{github.token}}
   WORKSPACE: ${{github.workspace}}
   ACTION: ${{github.action}}
+  TEST: 'TEST1'
 
 jobs:
   workflowTrigger:
@@ -76,15 +77,18 @@ jobs:
         id: show_version
         run: |
           echo "Latest tag version: ${{steps.prev}}"
+          echo "First test: $TEST"
 
       # Get branch name to use for tag
       - name: Extract Branch Name
         run: |
           echo "BRANCH_NAME=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
+          echo "TEST='TEST2'" >> $GITHUB_ENV
 
-      - name: ECHO BRANCH
+      - name: ECHO
         run: |
           echo "Branch: $BRANCH_NAME"
+          echo "Second test: $TEST"
       # - name: Create Release
       #   id: create_release
       #   uses: actions/create-release@v1
