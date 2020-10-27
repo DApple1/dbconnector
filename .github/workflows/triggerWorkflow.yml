@@ -38,6 +38,7 @@ env:
   QA: 'qa'
   PROD: 'prod'
   DB_ENVIRONMENT: ${{github.event.inputs.dbEnvironment}}
+  TEST10: 'TEST10'
 
 jobs:
   workflowTrigger:
@@ -91,7 +92,7 @@ jobs:
       - name: Set env vars
         if: ${{github.event.inputs.dbEnvironment}} == 'dev'
         run: |
-          echo "TEST=TEST5" >> $GITHUB_ENV
+          echo "TEST=$TEST10" >> $GITHUB_ENV
 
       # Get branch name to use for tag
       - name: Extract Branch Name
