@@ -88,14 +88,28 @@ jobs:
           echo "Latest tag version: ${{steps.prev}}"
           echo "First test: $TEST"
 
-      # Use env var
-      - name: Set env vars
+      # Set env vars based on environment input
+      - name: Set env vars - DEV
         if: github.event.inputs.dbEnvironment == 'dev'
         run: |
           echo "ENVIRONMENT=$DEV" >> $GITHUB_ENV
-          echo "USER=TESTUSER" >> $GITHUB_ENV
-          echo "PASS=TESTPASS" >> $GITHUB_ENV
+          echo "USER=userDev" >> $GITHUB_ENV
+          echo "PASS=passDev" >> $GITHUB_ENV
 
+      - name: Set env vars - QA
+        if: github.event.inputs.dbEnvironment == 'qa'
+        run: |
+          echo "ENVIRONMENT=$QA" >> $GITHUB_ENV
+          echo "USER=userQa" >> $GITHUB_ENV
+          echo "PASS=passQa" >> $GITHUB_ENV
+
+      - name: Set env vars - PROD
+        if: github.event.inputs.dbEnvironment == 'prod'
+        run: |
+          echo "ENVIRONMENT=$PROD" >> $GITHUB_ENV
+          echo "USER=userProd" >> $GITHUB_ENV
+          echo "PASS=passProd" >> $GITHUB_ENV
+          
       # Get branch name to use for tag
       - name: Extract Branch Name
         run: |
