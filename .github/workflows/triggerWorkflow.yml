@@ -81,7 +81,6 @@ jobs:
 
       # Use env var
       - name: Set env vars
-        run: Set env variables!
         env: 
           TEST: 'TEST3'
 
