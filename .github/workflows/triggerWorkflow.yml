@@ -90,7 +90,7 @@ jobs:
 
       # Use env var
       - name: Set env vars
-        if: ${{DB_ENVIRONMENT}} == 'dev'
+        if: github.event.inputs.dbEnvironment == 'dev'
         run: |
           echo "ENVIRONMENT=$DEV" >> $GITHUB_ENV
           echo "USER=TESTUSER" >> $GITHUB_ENV
