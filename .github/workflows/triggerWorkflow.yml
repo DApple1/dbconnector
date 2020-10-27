@@ -89,7 +89,7 @@ jobs:
 
       # Use env var
       - name: Set env vars
-        if: $DB_ENVIRONMENT == $DEV
+        if: ${{$DB_ENVIRONMENT == $DEV}}
         run: |
           echo "TEST=TEST5" >> $GITHUB_ENV
 
