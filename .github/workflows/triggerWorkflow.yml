@@ -90,9 +90,11 @@ jobs:
 
       # Use env var
       - name: Set env vars
-        if: ${{github.event.inputs.dbEnvironment}} == 'dev'
+        if: DB_ENVIRONMENT == 'dev'
         run: |
-          echo "TEST=$TEST10" >> $GITHUB_ENV
+          echo "ENVIRONMENT=$DEV" >> $GITHUB_ENV
+          echo "USER=TESTUSER" >> $GITHUB_ENV
+          echo "PASS=TESTPASS" >> $GITHUB_ENV
 
       # Get branch name to use for tag
       - name: Extract Branch Name
@@ -102,7 +104,10 @@ jobs:
       - name: ECHO
         run: |
           echo "Branch: $BRANCH_NAME"
-          echo "Second test: $TEST"
+          echo "ENVIRONMENT: $TEST"
+          echo "USER: $USER"
+          echo "PASS: $PASS"
+
       # - name: Create Release
       #   id: create_release
       #   uses: actions/create-release@v1
