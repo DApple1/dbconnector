@@ -10,6 +10,10 @@ on:
         description: 'Choose between: patch, minor, major'
         required: true
         default: patch
+      dbEnvironment:
+        description: 'What environment?'
+        required: true
+        default: dev
 
 env:
   EVENTPATH: ${{github.event_path	}}
@@ -30,6 +34,10 @@ env:
   WORKSPACE: ${{github.workspace}}
   ACTION: ${{github.action}}
   TEST: 'TEST1'
+  DEV: 'dev'
+  QA: 'qa'
+  PROD: 'prod'
+  DB_ENVIRONMENT: ${{github.event.inputs.dbEnvironment}}
 
 jobs:
   workflowTrigger:
@@ -81,9 +89,9 @@ jobs:
 
       # Use env var
       - name: Set env vars
-        run: echo $TEST
-        env: 
-          TEST: 'TEST3'
+        if: $DB_ENVIRONMENT == $DEV
+        run: |
+          echo "TEST=TEST5" >> $GITHUB_ENV
 
       # Get branch name to use for tag
       - name: Extract Branch Name
