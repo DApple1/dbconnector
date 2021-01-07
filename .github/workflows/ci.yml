@@ -22,6 +22,12 @@ jobs:
         run: |
           echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
             
+      # Get branch name to use for tag
+      - name: Extract Branch Name
+        run: |
+          echo "::set-env name=TAG_NAME::$(echo ${GITHUB_REF##*/})"
+            
+
       - name: Echo values
         run: |
           echo "Environment: ${{ github.event.inputs.deployTo }}"
