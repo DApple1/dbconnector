@@ -35,9 +35,9 @@ jobs:
           echo ${{github.token}}
 
       # Merge selected repo to master
-      - name: Merge ${{ github.event.inputs.head }} to master
+      - name: GET REPO
         uses: octokit/request-action@v2.x
-        id: mergeMaster
+        id: getRepo
         with:
           route: GET /repos/{owner}/{repo}
           mediaType: '{"Accept": application/vnd.github.v3+json}'
