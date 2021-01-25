@@ -1,0 +1,41 @@
+name: Merge to Master
+on:
+  workflow_dispatch:
+    inputs:
+      head:
+        description: "Branch to merge into master"
+        required: true
+        default: "develop"
+      bump:
+        description: "Choose bump for next version. Options: patch, minor, major."
+        required: true
+        default: "patch"
+
+# Environment variables available to all jobs and steps in workflow
+env:
+  PROVISIONER_APP_ID: fff-provisioner-apps
+
+jobs:
+  merge-master:
+    name: Merge, Tag, Release, Build, and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      # Get the code
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: "0"
+
+      # Merge selected repo to master
+      - name: Merge ${{ github.event.inputs.head }} to master
+        uses: octokit/request-action@v2.0.24
+        id: mergeMaster
+        with:
+          route: POST /repos/{repository}/merges
+          repository: ${{ github.repository }}
+          mediaType: '{"Accept": application/vnd.github.v3+json}'
+          base: "master"
+          head: ${{ github.event.inputs.head }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
