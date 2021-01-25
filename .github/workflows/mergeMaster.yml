@@ -28,6 +28,12 @@ jobs:
         with:
           fetch-depth: "0"
 
+      - name: Extract Branch Name
+        run: |
+          echo ${{github.repository_owner}}
+          echo ${{github.repository}}
+          echo ${{github.repository}}
+
       # Merge selected repo to master
       - name: Merge ${{ github.event.inputs.head }} to master
         uses: octokit/request-action@v2.0.24
@@ -40,5 +46,5 @@ jobs:
           base: "master"
           head: ${{ github.event.inputs.head }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
 
