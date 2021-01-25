@@ -32,11 +32,11 @@ jobs:
         run: |
           echo ${{github.repository_owner}}
           echo ${{github.repository}}
-          echo ${{github.repository}}
+          echo ${{github.token}}
 
       # Merge selected repo to master
       - name: Merge ${{ github.event.inputs.head }} to master
-        uses: octokit/request-action@v2.0.24
+        uses: octokit/request-action@v2.x
         id: mergeMaster
         with:
           route: POST /repos/{owner}/{repository}/merges
