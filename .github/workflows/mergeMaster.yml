@@ -39,12 +39,24 @@ jobs:
         uses: octokit/request-action@v2.x
         id: mergeMaster
         with:
-          route: POST /repos/{owner}/{repository}/merges
+          route: GET /repos/{owner}/{repo}
+          mediaType: '{"Accept": application/vnd.github.v3+json}'
           owner: DApple1
-          repository: ${{ github.repository }}
+          repo: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Merge selected repo to master
+      - name: Merge ${{ github.event.inputs.head }} to master
+        uses: octokit/request-action@v2.x
+        id: mergeMaster
+        with:
+          route: POST /repos/{owner}/{repo}/merges
+          owner: DApple1
+          repo: ${{ github.repository }}
           mediaType: '{"Accept": application/vnd.github.v3+json}'
           base: "master"
           head: ${{ github.event.inputs.head }}
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
