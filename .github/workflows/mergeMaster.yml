@@ -15,7 +15,7 @@ on:
 env:
   PROVISIONER_APP_ID: fff-provisioner-apps
 
-  
+
 
 jobs:
   merge-master:
@@ -33,7 +33,8 @@ jobs:
         uses: octokit/request-action@v2.0.24
         id: mergeMaster
         with:
-          route: POST /repos/{repository}/merges
+          route: POST /repos/{owner}/{repository}/merges
+          owner: DApple1
           repository: ${{ github.repository }}
           mediaType: '{"Accept": application/vnd.github.v3+json}'
           base: "master"
