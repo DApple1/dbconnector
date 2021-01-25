@@ -39,7 +39,7 @@ jobs:
         uses: octokit/request-action@v2.x
         id: getRepo
         with:
-          route: GET /repos/{repository}
+          route: GET /repos/:repository
           repository: DApple1/dbconnector
           mediaType: '{"Accept": application/vnd.github.v3+json}'
         env:
