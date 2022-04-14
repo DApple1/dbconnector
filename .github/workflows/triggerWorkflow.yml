@@ -46,10 +46,10 @@ jobs:
 
     runs-on: ubuntu-latest
     steps:
-      - name: Echo values
+      - name: Trust My Directory
         run: |
-          git config --global --add safe.directory /github/workspace
-          
+          export GIT_CEILING_DIRECTORIES=/github/workspace
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
