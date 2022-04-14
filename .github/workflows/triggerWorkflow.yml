@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Trust My Directory
         run: |
-          export GIT_CEILING_DIRECTORIES=/github/workspace
+          git config --global --add anothrNick/github-tag-action
 
       - name: Checkout
         uses: actions/checkout@v2
