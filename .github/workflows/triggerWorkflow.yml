@@ -71,10 +71,15 @@ jobs:
 
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.39.0
+        id: tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: ${{ github.event.inputs.bump }}
           WITH_V: true
+
+      - name: Echo NEW tag
+        run: |
+          echo "Tag: ${{steps.tag.outputs.tag}}"
 
       # - name: 'Get tag'
       #   id: previoustag
