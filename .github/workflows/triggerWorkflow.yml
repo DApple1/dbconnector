@@ -47,6 +47,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+      - name: Configure safe.directory  # Workaround for actions/checkout#760
+        run: git config --global --add safe.directory /github/workspace
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
