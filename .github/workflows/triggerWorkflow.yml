@@ -65,17 +65,17 @@ jobs:
           echo "${{github.sha}}"
 
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.17.2
+        uses: anothrNick/github-tag-action@1.26.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: ${{ github.event.inputs.bump }}
           WITH_V: true
 
-      - name: 'Get tag'
-        id: previoustag
-        uses: "WyriHaximus/github-action-get-previous-tag@master"
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      # - name: 'Get tag'
+      #   id: previoustag
+      #   uses: "WyriHaximus/github-action-get-previous-tag@master"
+      #   env:
+      #     GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
       # - name: Get the version
       #   id: get_version
