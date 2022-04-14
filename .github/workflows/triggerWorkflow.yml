@@ -48,7 +48,7 @@ jobs:
     steps:
       - name: Trust My Directory
         run: |
-          git config --global --add anothrNick/github-tag-action
+          git config --global --add safe.directory anothrNick/github-tag-action
 
       - name: Checkout
         uses: actions/checkout@v2
