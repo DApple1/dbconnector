@@ -76,6 +76,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: ${{ github.event.inputs.bump }}
           WITH_V: true
+          RELEASE_BRANCHES: develop,hotfix*
+
 
       - name: Echo NEW tag
         run: |
