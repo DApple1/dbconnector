@@ -4,7 +4,7 @@
   "description": "CRUD operations for test data",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "fast-csv": "^4.1.3",
     "mysql": "^2.18.1"
   },
